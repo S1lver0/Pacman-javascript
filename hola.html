@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Pac-Man en JavaScript con CSS</title>
+  <style>
+    .pacman {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: yellow;
+      border: 10px solid black;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      animation: pacman-mouth 0.2s infinite;
+      position: absolute;
+    }
+    
+    @keyframes pacman-mouth {
+      0% {
+        transform: rotate(0deg);
+      }
+      50% {
+        transform: rotate(45deg);
+      }
+      100% {
+        transform: rotate(0deg);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="pacman"></div>
+  
+  <script>
+    var posX = 135;
+    var posY = 135;
+
+    const pacman = document.querySelector('.pacman');
+    
+    setInterval(() => {
+      pacman.classList.toggle('pacman-open');
+    }, 200);
+
+    function moverPacman(evento) {
+  switch(evento.keyCode) {
+    case 37: // flecha izquierda
+      posX -= 10;
+      pacman.style.transform = "rotate(180deg)";
+      break;
+    case 38: // flecha arriba
+      posY -= 10;
+      pacman.style.transform = "rotate(-90deg)";
+      break;
+    case 39: // flecha derecha
+      posX += 10;
+      pacman.style.transform = "rotate(0deg)";
+      break;
+    case 40: // flecha abajo
+      posY += 10;
+      pacman.style.transform = "rotate(90deg)";
+      break;
+  }
+
+  // Verificamos que el Pac-Man no se salga del juego
+  if (posX < 0) {
+    posX = 0;
+  } else if (posX > 700) {// para determinar los limites por los cuales se mueve pacman en el eje x
+    posX = 700;
+  }
+
+  if (posY < 0) {
+    posY = 0;
+  } else if (posY > 700) {// para determinar los limites por los cuales se mueve pacman en el eje y 
+    posY = 700;
+  }
+
+  // Movemos al Pac-Man a su nueva posición
+  pacman.style.left = posX + "px";
+  pacman.style.top = posY + "px";
+}
+
+// Escuchamos los eventos de teclado para mover al Pac-Man
+document.addEventListener("keydown", moverPacman);
+
+  </script>
+</body>
+</html>

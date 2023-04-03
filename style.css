@@ -1,5 +1,36 @@
-html{
-    margin: 0px;
-    padding: 0px;
-    background: red;
+body{
+    background-color: black;
 }
+
+
+
+#pantalla {
+    width: 700px;
+    height: 700px;
+    background-color: #000;
+  }
+  
+.pacman{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: yellow;
+    border: 10px solid black;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    animation: abrirCerrar 0.2s infinite;
+    position: absolute;
+}
+
+@keyframes abrirCerrar {
+    0% {
+      transform: rotate(0deg);
+    }
+    50% {
+      transform: rotate(45deg);
+    }
+    100% {
+      transform: rotate(0deg);
+    
+    }
+  }
